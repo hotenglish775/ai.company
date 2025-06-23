@@ -216,7 +216,7 @@ export default function Services() {
                 animation="fade-up" 
                 delay={index * 100}
               >
-                <ServiceCard service={service} />
+                <ServiceCard service={service} showBuyButton={true} />
               </AnimatedSection>
             ))}
           </div>

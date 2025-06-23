@@ -15,11 +15,9 @@ export const metadata: Metadata = {
 const plans = [
   {
     id: 'starter',
-    name: 'Starter',
+    title: 'Starter',
     description: 'Perfect for small businesses exploring AI',
-    price: '$5,000',
-    period: '/month',
-    popular: false,
+    price: '$5,000/month',
     features: [
       'AI Strategy Consultation (4 hours)',
       'Basic chatbot implementation',
@@ -29,21 +27,12 @@ const plans = [
       '1 AI model deployment',
       'Monthly performance review'
     ],
-    limitations: [
-      'Up to 1,000 API calls/month',
-      'Standard support response',
-      'Basic integrations only'
-    ],
-    cta: 'Start Free Trial',
-    href: '/contact?plan=starter'
   },
   {
     id: 'professional',
-    name: 'Professional',
+    title: 'Professional',
     description: 'Ideal for growing companies ready to scale',
-    price: '$15,000',
-    period: '/month',
-    popular: true,
+    price: '$15,000/month',
     features: [
       'Everything in Starter',
       'Custom AI model development',
@@ -55,21 +44,12 @@ const plans = [
       'Bi-weekly strategy calls',
       'Performance optimization'
     ],
-    limitations: [
-      'Up to 10,000 API calls/month',
-      'Business hours support',
-      'Standard SLA'
-    ],
-    cta: 'Get Started',
-    href: '/contact?plan=professional'
   },
   {
     id: 'enterprise',
-    name: 'Enterprise',
+    title: 'Enterprise',
     description: 'Comprehensive solution for large organizations',
-    price: 'Custom',
-    period: 'pricing',
-    popular: false,
+    price: 'Custom pricing',
     features: [
       'Everything in Professional',
       'Dedicated AI team',
@@ -83,13 +63,6 @@ const plans = [
       'Custom integrations',
       'Training & workshops'
     ],
-    limitations: [
-      'Unlimited API calls',
-      '24/7 dedicated support',
-      'Enterprise SLA'
-    ],
-    cta: 'Contact Sales',
-    href: '/contact?plan=enterprise'
   }
 ];
 
@@ -170,18 +143,12 @@ export default function Pricing() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {plans.map((plan, index) => (
               <AnimatedSection 
-                key={plan.name} 
+                key={plan.id} 
                 animation="fade-up" 
                 delay={index * 150}
               >
                 <ServiceCard
-                  service={{
-                    id: plan.id,
-                    title: plan.name,
-                    description: plan.description,
-                    features: plan.features,
-                    price: `${plan.price}${plan.period}`,
-                  }}
+                  service={plan}
                   showBuyButton={true}
                 />
               </AnimatedSection>

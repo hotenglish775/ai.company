@@ -80,23 +80,24 @@ export function ServiceCard({ service, delay = 0, showBuyButton = true }: Servic
           </div>
           
           {showBuyButton && (
-            <Button 
-              onClick={isCustomPricing ? undefined : handleBuyNow}
-              asChild={isCustomPricing}
-              className="btn-primary w-full group"
-            >
+            <>
               {isCustomPricing ? (
-                <a href="/contact">
-                  Contact Sales
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
+                <Button asChild className="btn-primary w-full group">
+                  <a href="/contact">
+                    Contact Sales
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </Button>
               ) : (
-                <>
+                <Button 
+                  onClick={handleBuyNow}
+                  className="btn-primary w-full group"
+                >
                   Buy Now
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </>
+                </Button>
               )}
-            </Button>
+            </>
           )}
         </div>
       </div>
