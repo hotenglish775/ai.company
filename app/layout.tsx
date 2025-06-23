@@ -5,21 +5,21 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'CognifyAI - Transforming Business with AI Solutions',
-  description: 'Leading AI consultancy providing custom machine learning models, NLP integration, and cutting-edge artificial intelligence solutions for modern businesses.',
-  keywords: ['AI consulting', 'machine learning', 'artificial intelligence', 'NLP', 'computer vision', 'data science'],
-  authors: [{ name: 'CognifyAI Team' }],
+  title: 'Revolution AI Automations - Transform Your Business with AI',
+  description: 'Leading AI automation platform providing custom machine learning models, intelligent workflows, and cutting-edge artificial intelligence solutions for modern businesses.',
+  keywords: ['AI automation', 'machine learning', 'artificial intelligence', 'business automation', 'workflow optimization', 'intelligent systems'],
+  authors: [{ name: 'Revolution AI Team' }],
   openGraph: {
-    title: 'CognifyAI - Transforming Business with AI Solutions',
-    description: 'Leading AI consultancy providing custom machine learning models and cutting-edge solutions.',
-    url: 'https://cognifyai.com',
-    siteName: 'CognifyAI',
+    title: 'Revolution AI Automations - Transform Your Business with AI',
+    description: 'Leading AI automation platform providing custom solutions and intelligent workflows.',
+    url: 'https://revolution-ai.co.uk',
+    siteName: 'Revolution AI Automations',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CognifyAI - AI Solutions for Modern Business',
-    description: 'Transform your business with our cutting-edge AI consulting and custom solutions.',
+    title: 'Revolution AI Automations - AI Solutions for Modern Business',
+    description: 'Transform your business with our cutting-edge AI automation platform and custom solutions.',
   },
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
@@ -40,7 +40,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="min-h-screen pt-16 lg:pt-20">
+          <main className="min-h-screen">
             {children}
           </main>
           <Footer />

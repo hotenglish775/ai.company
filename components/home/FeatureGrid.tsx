@@ -10,14 +10,14 @@ import { iconMap, IconName } from '@/lib/icons';
 const features = [
   {
     icon: 'Brain' as IconName,
-    title: 'Advanced Machine Learning',
-    description: 'Custom ML models trained on your data to solve complex business problems with state-of-the-art algorithms.',
-    benefits: ['Predictive Analytics', 'Pattern Recognition', 'Automated Decision Making'],
+    title: 'Intelligent Automation',
+    description: 'Smart AI workflows that learn and adapt to your business processes, delivering consistent results.',
+    benefits: ['Self-Learning Systems', 'Process Optimization', 'Automated Decision Making'],
   },
   {
     icon: 'Zap' as IconName,
-    title: 'Real-time Processing',
-    description: 'Lightning-fast AI inference engines that process data in milliseconds for immediate insights.',
+    title: 'Lightning-Fast Processing',
+    description: 'Real-time AI processing engines that handle complex tasks in milliseconds for immediate results.',
     benefits: ['Sub-second Response', 'Scalable Architecture', 'High Throughput'],
   },
   {
@@ -28,7 +28,7 @@ const features = [
   },
   {
     icon: 'BarChart3' as IconName,
-    title: 'Intelligent Analytics',
+    title: 'Smart Analytics',
     description: 'Transform raw data into actionable insights with our advanced analytics and visualization tools.',
     benefits: ['Real-time Dashboards', 'Predictive Insights', 'Custom Reports'],
   },
@@ -48,16 +48,16 @@ const features = [
 
 export function FeatureGrid() {
   return (
-    <section className="py-24 bg-navy-900 relative">
+    <section className="py-24 bg-navy-800 relative">
       <div className="container-width section-padding">
         <AnimatedSection animation="fade-up">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Why Choose <span className="gradient-text">CognifyAI</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Why Choose <span className="gradient-text">Revolution AI</span>
             </h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto">
               We combine cutting-edge AI technology with deep business expertise 
-              to deliver solutions that drive real results for your organization.
+              to deliver automation solutions that drive real results for your organization.
             </p>
           </div>
         </AnimatedSection>
@@ -71,10 +71,10 @@ export function FeatureGrid() {
                 animation="fade-up" 
                 delay={index * 100}
               >
-                <div className="group glass-card p-8 rounded-2xl hover:bg-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                <div className="group glass-card p-8 rounded-2xl hover:bg-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-white/10">
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center group-hover:animate-pulse-glow transition-all duration-300">
-                      <IconComponent className="w-6 h-6 text-white" />
+                    <div className="w-14 h-14 bg-gradient-to-r from-electric-400 to-teal-400 rounded-xl flex items-center justify-center group-hover:animate-pulse-glow transition-all duration-300">
+                      <IconComponent className="w-7 h-7 text-white" />
                     </div>
                     <ArrowUpRight className="w-5 h-5 text-white/40 group-hover:text-electric-400 transition-colors" />
                   </div>

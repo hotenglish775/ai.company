@@ -10,55 +10,29 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'Poppins', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // CognifyAI Dark Theme Palette
+        // Revolution AI Bright Theme Palette
         navy: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1C1C1E',
-          900: '#0D0D0D',
-          950: '#000000',
-        },
-        peach: {
-          50: '#fef7f0',
-          100: '#fdeee0',
-          200: '#fbd9c0',
-          300: '#f8c195',
-          400: '#f4a268',
-          500: '#F2B880',
-          600: '#e89c5f',
-          700: '#d4834a',
-          800: '#b06a3e',
-          900: '#8f5635',
-          950: '#4d2d1a',
-        },
-        'light-peach': {
-          50: '#fffbf8',
-          100: '#fff5f0',
-          200: '#ffe8dd',
-          300: '#FFDFCC',
-          400: '#ffd0b8',
-          500: '#ffc1a4',
-          600: '#ffb290',
-          700: '#ffa37c',
-          800: '#ff9468',
-          900: '#ff8554',
-          950: '#ff7640',
+          50: '#f0f4ff',
+          100: '#e0e9ff',
+          200: '#c7d6ff',
+          300: '#a5b8ff',
+          400: '#8191ff',
+          500: '#6366f1',
+          600: '#4f46e5',
+          700: '#4338ca',
+          800: '#3730a3',
+          900: '#1e1b4b', // Deep navy background
+          950: '#0f0c29', // Darker navy
         },
         electric: {
           50: '#f0f9ff',
           100: '#e0f2fe',
           200: '#bae6fd',
           300: '#7dd3fc',
-          400: '#38bdf8',
+          400: '#38bdf8', // Bright blue accent
           500: '#0ea5e9',
           600: '#0284c7',
           700: '#0369a1',
@@ -71,7 +45,7 @@ const config: Config = {
           100: '#ccfbf1',
           200: '#99f6e4',
           300: '#5eead4',
-          400: '#2dd4bf',
+          400: '#2dd4bf', // Bright teal accent
           500: '#14b8a6',
           600: '#0d9488',
           700: '#0f766e',
@@ -123,10 +97,10 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, #0D0D0D 0%, #1C1C1E 100%)',
-        'card-gradient': 'linear-gradient(135deg, rgba(242, 184, 128, 0.1) 0%, rgba(255, 223, 204, 0.1) 100%)',
-        'peach-gradient': 'linear-gradient(135deg, #F2B880 0%, #FFDFCC 100%)',
-        'dark-gradient': 'linear-gradient(135deg, #0D0D0D 0%, #1C1C1E 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #1e1b4b 0%, #0f0c29 100%)',
+        'card-gradient': 'linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(45, 212, 191, 0.1) 100%)',
+        'bright-gradient': 'linear-gradient(135deg, #38bdf8 0%, #2dd4bf 100%)',
+        'navy-gradient': 'linear-gradient(135deg, #1e1b4b 0%, #0f0c29 100%)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -134,10 +108,11 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       boxShadow: {
-        'glow-sm': '0 0 10px rgba(242, 184, 128, 0.3)',
-        'glow-md': '0 0 20px rgba(242, 184, 128, 0.4)',
-        'glow-lg': '0 0 30px rgba(242, 184, 128, 0.5)',
-        'peach-glow': '0 4px 20px rgba(242, 184, 128, 0.3)',
+        'glow-sm': '0 0 10px rgba(56, 189, 248, 0.3)',
+        'glow-md': '0 0 20px rgba(56, 189, 248, 0.4)',
+        'glow-lg': '0 0 30px rgba(56, 189, 248, 0.5)',
+        'bright-glow': '0 4px 20px rgba(56, 189, 248, 0.3)',
+        'teal-glow': '0 4px 20px rgba(45, 212, 191, 0.3)',
       },
       keyframes: {
         'accordion-down': {
@@ -184,10 +159,10 @@ const config: Config = {
         },
         'pulse-glow': {
           '0%, 100%': {
-            boxShadow: '0 0 5px rgba(242, 184, 128, 0.5)',
+            boxShadow: '0 0 5px rgba(56, 189, 248, 0.5)',
           },
           '50%': {
-            boxShadow: '0 0 20px rgba(242, 184, 128, 0.8), 0 0 30px rgba(255, 223, 204, 0.3)',
+            boxShadow: '0 0 20px rgba(56, 189, 248, 0.8), 0 0 30px rgba(45, 212, 191, 0.3)',
           },
         },
         'float': {
