@@ -134,7 +134,7 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/80 backdrop-blur-sm"
@@ -142,18 +142,19 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
-        <div className="glass-card rounded-3xl p-8 relative">
-          {/* Close Button */}
-          <button
-            onClick={handleClose}
-            className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-          >
-            <X className="w-5 h-5 text-white/70" />
-          </button>
+      <div className="relative w-full max-w-2xl bg-navy-900/95 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl">
+        {/* Close Button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors z-10"
+        >
+          <X className="w-6 h-6 text-white/70" />
+        </button>
 
+        {/* Content */}
+        <div className="p-8">
           {/* Header */}
-          <div className="mb-8">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-2">Complete Your Purchase</h2>
             <p className="text-white/70">Secure checkout powered by Stripe & Cryptomus</p>
           </div>
@@ -161,58 +162,62 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
           {/* Progress Indicator */}
           <div className="flex items-center justify-center mb-8">
             <div className="flex items-center space-x-4">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${
                 step === 'info' ? 'bg-electric-500 text-white' : 
                 step === 'payment' || step === 'processing' ? 'bg-electric-500/20 text-electric-400' : 
                 'bg-white/10 text-white/50'
               }`}>
-                {step === 'payment' || step === 'processing' ? <CheckCircle className="w-4 h-4" /> : '1'}
+                {step === 'payment' || step === 'processing' ? <CheckCircle className="w-5 h-5" /> : '1'}
               </div>
-              <div className={`w-16 h-0.5 ${
+              <div className={`w-16 h-1 rounded-full ${
                 step === 'payment' || step === 'processing' ? 'bg-electric-500' : 'bg-white/20'
               }`} />
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${
                 step === 'payment' ? 'bg-electric-500 text-white' : 
                 step === 'processing' ? 'bg-electric-500/20 text-electric-400' : 
                 'bg-white/10 text-white/50'
               }`}>
-                {step === 'processing' ? <CheckCircle className="w-4 h-4" /> : '2'}
+                {step === 'processing' ? <CheckCircle className="w-5 h-5" /> : '2'}
               </div>
-              <div className={`w-16 h-0.5 ${
+              <div className={`w-16 h-1 rounded-full ${
                 step === 'processing' ? 'bg-electric-500' : 'bg-white/20'
               }`} />
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${
                 step === 'processing' ? 'bg-electric-500 text-white' : 'bg-white/10 text-white/50'
               }`}>
-                {step === 'processing' && isProcessing ? <Loader2 className="w-4 h-4 animate-spin" /> : '3'}
+                {step === 'processing' && isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : '3'}
               </div>
             </div>
           </div>
 
           {/* Product Summary */}
-          <div className="glass-card p-6 rounded-xl mb-8">
-            <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-            <p className="text-white/70 text-sm mb-4">{product.description}</p>
+          <div className="bg-white/5 border border-white/10 p-6 rounded-xl mb-6">
             <div className="flex items-center justify-between">
-              <div className="text-2xl font-bold gradient-text">{product.price}</div>
-              <div className="text-white/60">Monthly subscription</div>
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{product.name}</h3>
+                <p className="text-white/70 text-sm">{product.description}</p>
+              </div>
+              <div className="text-right">
+                <div className="text-2xl font-bold gradient-text">{product.price}</div>
+                <div className="text-white/60 text-sm">per month</div>
+              </div>
             </div>
           </div>
 
           {/* Error Message */}
           {errorMessage && (
             <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center space-x-3">
-              <AlertCircle className="w-5 h-5 text-red-400" />
-              <p className="text-red-400">{errorMessage}</p>
+              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+              <p className="text-red-400 text-sm">{errorMessage}</p>
             </div>
           )}
 
           {/* Step Content */}
           {step === 'info' && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold mb-4">Customer Information</h3>
+              <h3 className="text-xl font-semibold">Customer Information</h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">
                     First Name *
@@ -227,7 +232,7 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
                     placeholder="John"
                   />
                   {errors.firstName && (
-                    <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
+                    <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>
                   )}
                 </div>
 
@@ -245,7 +250,7 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
                     placeholder="Doe"
                   />
                   {errors.lastName && (
-                    <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
+                    <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>
                   )}
                 </div>
               </div>
@@ -264,7 +269,7 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
                   placeholder="john@company.com"
                 />
                 {errors.email && (
-                  <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                  <p className="text-red-400 text-xs mt-1">{errors.email}</p>
                 )}
               </div>
 
@@ -282,7 +287,7 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
                   placeholder="+1 (555) 123-4567"
                 />
                 {errors.phone && (
-                  <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                  <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
                 )}
               </div>
 
@@ -297,13 +302,13 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
 
           {step === 'payment' && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold mb-4">Choose Payment Method</h3>
+              <h3 className="text-xl font-semibold">Choose Payment Method</h3>
               
               {/* Payment Method Selection */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <button
                   onClick={() => setPaymentMethod('stripe')}
-                  className={`p-6 rounded-xl border-2 transition-all ${
+                  className={`p-6 rounded-xl border-2 transition-all text-left ${
                     paymentMethod === 'stripe'
                       ? 'border-electric-500 bg-electric-500/10'
                       : 'border-white/20 hover:border-white/40'
@@ -314,13 +319,13 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
                     <span className="font-semibold">Credit/Debit Card</span>
                   </div>
                   <p className="text-white/70 text-sm">
-                    Secure payment via Stripe. Supports all major cards.
+                    Secure payment via Stripe
                   </p>
                 </button>
 
                 <button
                   onClick={() => setPaymentMethod('cryptomus')}
-                  className={`p-6 rounded-xl border-2 transition-all ${
+                  className={`p-6 rounded-xl border-2 transition-all text-left ${
                     paymentMethod === 'cryptomus'
                       ? 'border-electric-500 bg-electric-500/10'
                       : 'border-white/20 hover:border-white/40'
@@ -331,7 +336,7 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
                     <span className="font-semibold">Cryptocurrency</span>
                   </div>
                   <p className="text-white/70 text-sm">
-                    Pay with Bitcoin, USDT, ETH, and other cryptocurrencies.
+                    Pay with Bitcoin, USDT, ETH
                   </p>
                 </button>
               </div>
@@ -340,10 +345,8 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
               <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-xl">
                 <Shield className="w-5 h-5 text-teal-400" />
                 <div>
-                  <p className="text-white font-medium">Secure Payment</p>
-                  <p className="text-white/70 text-sm">
-                    Your payment information is encrypted and secure.
-                  </p>
+                  <p className="text-white font-medium text-sm">Secure Payment</p>
+                  <p className="text-white/70 text-xs">Your information is encrypted and secure</p>
                 </div>
               </div>
 
@@ -379,7 +382,7 @@ export function PaymentModal({ isOpen, onClose, product }: PaymentModalProps) {
               </div>
               <h3 className="text-xl font-semibold mb-2">Processing Payment</h3>
               <p className="text-white/70">
-                Please wait while we redirect you to the payment processor...
+                Redirecting you to the payment processor...
               </p>
             </div>
           )}
