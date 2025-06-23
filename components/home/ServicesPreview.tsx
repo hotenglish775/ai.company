@@ -1,26 +1,20 @@
 import Link from 'next/link';
 import { 
-  MessageSquare, 
-  Eye, 
-  TrendingUp, 
-  Shield,
   ArrowRight,
   Sparkles,
-  Mail,
-  Bot,
-  Share2,
-  BarChart3
+  CheckCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
 import { ServiceCard } from '@/components/shared/ServiceCard';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { products } from '@/lib/products';
+import { iconMap, IconName } from '@/lib/icons';
 
 const coreServices = [
   {
     id: 'nlp-service',
-    icon: MessageSquare,
+    icon: 'MessageSquare' as IconName,
     title: 'Natural Language Processing',
     description: 'Advanced NLP solutions for text analysis, sentiment detection, and conversational AI.',
     features: ['Chatbots & Virtual Assistants', 'Document Analysis', 'Language Translation', 'Sentiment Analysis'],
@@ -29,7 +23,7 @@ const coreServices = [
   },
   {
     id: 'computer-vision-service',
-    icon: Eye,
+    icon: 'Eye' as IconName,
     title: 'Computer Vision',
     description: 'Cutting-edge image and video analysis for automated visual intelligence.',
     features: ['Object Detection', 'Facial Recognition', 'Quality Inspection', 'Medical Imaging'],
@@ -38,7 +32,7 @@ const coreServices = [
   },
   {
     id: 'predictive-analytics-service',
-    icon: TrendingUp,
+    icon: 'TrendingUp' as IconName,
     title: 'Predictive Analytics',
     description: 'Forecast trends and make data-driven decisions with advanced predictive models.',
     features: ['Sales Forecasting', 'Risk Assessment', 'Customer Behavior', 'Market Analysis'],
@@ -47,7 +41,7 @@ const coreServices = [
   },
   {
     id: 'ai-security-service',
-    icon: Shield,
+    icon: 'Shield' as IconName,
     title: 'AI Security & Compliance',
     description: 'Secure AI implementations with built-in compliance and risk management.',
     features: ['Model Security', 'Data Privacy', 'Audit Trails', 'Compliance Reporting'],
@@ -94,11 +88,17 @@ export function ServicesPreview() {
               Core <span className="gradient-text">AI Services</span>
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {coreServices.map((service, index) => (
-                <AnimatedSection key={service.id} animation="fade-up" delay={index * 100}>
-                  <ServiceCard service={service} showBuyButton={true} />
-                </AnimatedSection>
-              ))}
+              {coreServices.map((service, index) => {
+                const serviceWithIcon = {
+                  ...service,
+                  icon: iconMap[service.icon]
+                };
+                return (
+                  <AnimatedSection key={service.id} animation="fade-up" delay={index * 100}>
+                    <ServiceCard service={serviceWithIcon} showBuyButton={true} />
+                  </AnimatedSection>
+                );
+              })}
             </div>
           </div>
         </AnimatedSection>

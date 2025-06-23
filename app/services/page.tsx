@@ -1,28 +1,16 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { 
-  Brain, 
-  MessageSquare, 
-  Eye, 
-  TrendingUp, 
-  Shield, 
-  Cpu,
   ArrowRight,
   CheckCircle,
-  Sparkles,
-  Mail,
-  Bot,
-  Share2,
-  BarChart3,
-  Users,
-  Database,
-  Mic
+  Sparkles
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { ServiceCard } from '@/components/shared/ServiceCard';
 import { products, getProductsByCategory } from '@/lib/products';
+import { iconMap, IconName } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'AI Services - CognifyAI',
@@ -32,7 +20,7 @@ export const metadata: Metadata = {
 const coreServices = [
   {
     id: 'ai-consulting',
-    icon: Brain,
+    icon: 'Brain' as IconName,
     title: 'AI Strategy & Consulting',
     description: 'Comprehensive AI strategy development to identify opportunities and create implementation roadmaps.',
     features: [
@@ -48,7 +36,7 @@ const coreServices = [
   },
   {
     id: 'custom-models',
-    icon: Cpu,
+    icon: 'Cpu' as IconName,
     title: 'Custom AI Model Development',
     description: 'Bespoke machine learning models trained specifically for your data and business requirements.',
     features: [
@@ -64,7 +52,7 @@ const coreServices = [
   },
   {
     id: 'nlp',
-    icon: MessageSquare,
+    icon: 'MessageSquare' as IconName,
     title: 'Natural Language Processing',
     description: 'Advanced text analysis, chatbots, and conversational AI solutions for better customer engagement.',
     features: [
@@ -80,7 +68,7 @@ const coreServices = [
   },
   {
     id: 'computer-vision',
-    icon: Eye,
+    icon: 'Eye' as IconName,
     title: 'Computer Vision',
     description: 'Intelligent image and video analysis for automated visual inspection and recognition.',
     features: [
@@ -96,7 +84,7 @@ const coreServices = [
   },
   {
     id: 'predictive-analytics',
-    icon: TrendingUp,
+    icon: 'TrendingUp' as IconName,
     title: 'Predictive Analytics',
     description: 'Forecast trends, predict outcomes, and make data-driven decisions with advanced analytics.',
     features: [
@@ -112,7 +100,7 @@ const coreServices = [
   },
   {
     id: 'ai-security',
-    icon: Shield,
+    icon: 'Shield' as IconName,
     title: 'AI Security & Compliance',
     description: 'Secure AI implementations with built-in compliance, monitoring, and risk management.',
     features: [
@@ -131,32 +119,32 @@ const coreServices = [
 const automationCategories = [
   {
     category: 'Communication & CRM',
-    icon: Mail,
+    icon: 'Mail' as IconName,
     description: 'Automate your communication workflows and CRM processes'
   },
   {
     category: 'Social Media Automation',
-    icon: Share2,
+    icon: 'Share2' as IconName,
     description: 'Streamline your social media content and engagement'
   },
   {
     category: 'Sales & CRM',
-    icon: Users,
+    icon: 'Users' as IconName,
     description: 'Enhance your sales processes and customer relationships'
   },
   {
     category: 'Internal Operations',
-    icon: BarChart3,
+    icon: 'BarChart3' as IconName,
     description: 'Optimize your internal workflows and team productivity'
   },
   {
     category: 'Backend Utilities',
-    icon: Database,
+    icon: 'Database' as IconName,
     description: 'Powerful backend tools and data processing utilities'
   },
   {
     category: 'Unique AI Modules',
-    icon: Mic,
+    icon: 'Mic' as IconName,
     description: 'Innovative AI solutions for specialized use cases'
   }
 ];
@@ -210,15 +198,21 @@ export default function Services() {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {coreServices.map((service, index) => (
-              <AnimatedSection 
-                key={service.id} 
-                animation="fade-up" 
-                delay={index * 100}
-              >
-                <ServiceCard service={service} showBuyButton={true} />
-              </AnimatedSection>
-            ))}
+            {coreServices.map((service, index) => {
+              const serviceWithIcon = {
+                ...service,
+                icon: iconMap[service.icon]
+              };
+              return (
+                <AnimatedSection 
+                  key={service.id} 
+                  animation="fade-up" 
+                  delay={index * 100}
+                >
+                  <ServiceCard service={serviceWithIcon} showBuyButton={true} />
+                </AnimatedSection>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -241,13 +235,14 @@ export default function Services() {
           <div className="space-y-16">
             {automationCategories.map((category, categoryIndex) => {
               const categoryProducts = getProductsByCategory(category.category);
+              const IconComponent = iconMap[category.icon];
               
               return (
                 <AnimatedSection key={category.category} animation="fade-up" delay={categoryIndex * 100}>
                   <div className="mb-12">
                     <div className="flex items-center space-x-4 mb-8">
                       <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
-                        <category.icon className="w-6 h-6 text-white" />
+                        <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="text-3xl font-bold">{category.category}</h3>
