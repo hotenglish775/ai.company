@@ -9,17 +9,29 @@ import {
   Cpu,
   ArrowRight,
   CheckCircle,
-  Sparkles
+  Sparkles,
+  Mail,
+  Phone,
+  Bot,
+  Calendar,
+  Share2,
+  Video,
+  FileText,
+  Users,
+  BarChart3,
+  Mic,
+  Database,
+  Zap
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
 
 export const metadata: Metadata = {
   title: 'AI Services - CognifyAI',
-  description: 'Comprehensive AI services including machine learning, NLP, computer vision, and predictive analytics. Transform your business with our expert AI solutions.',
+  description: 'Comprehensive AI services including automation modules, machine learning, NLP, computer vision, and predictive analytics. Transform your business with our expert AI solutions.',
 };
 
-const services = [
+const coreServices = [
   {
     id: 'ai-consulting',
     icon: Brain,
@@ -154,6 +166,165 @@ const services = [
   },
 ];
 
+const automationModules = [
+  {
+    category: 'Communication & CRM',
+    icon: Mail,
+    modules: [
+      {
+        title: 'AI Email Assistant (Gmail + GPT)',
+        description: 'Summarizes long emails, suggests replies, and auto-responds',
+        features: ['Email summarization', 'Smart reply suggestions', 'Auto-response system', 'Gmail integration'],
+        price: 'From $5,000'
+      },
+      {
+        title: 'AI Call Summary + CRM Logging',
+        description: 'Transcribe calls via Whisper → Summarize via GPT → Send to HubSpot or Notion',
+        features: ['Call transcription', 'AI summarization', 'CRM integration', 'Automated logging'],
+        price: 'From $8,000'
+      },
+      {
+        title: 'AI Chatbot for WhatsApp/Web',
+        description: 'GPT-powered lead capture, appointment booking',
+        features: ['Multi-platform support', 'Lead qualification', 'Appointment scheduling', 'Custom responses'],
+        price: 'From $6,000'
+      },
+      {
+        title: 'Lead Nurturing Sequence Builder',
+        description: 'AI-drafted emails/SMS follow-ups triggered from forms or activity',
+        features: ['Automated sequences', 'Trigger-based messaging', 'Personalization', 'Multi-channel support'],
+        price: 'From $7,000'
+      }
+    ]
+  },
+  {
+    category: 'Social Media Automation',
+    icon: Share2,
+    modules: [
+      {
+        title: 'Social Content Generator + Scheduler',
+        description: 'GPT creates and schedules multi-platform content via Facebook/Buffer API',
+        features: ['Content generation', 'Multi-platform posting', 'Scheduling automation', 'Brand voice consistency'],
+        price: 'From $4,000'
+      },
+      {
+        title: 'Auto Comment & DM Responder',
+        description: 'Detects inbound social messages and replies with AI-generated responses',
+        features: ['Real-time monitoring', 'Intelligent responses', 'Sentiment analysis', 'Escalation rules'],
+        price: 'From $5,000'
+      },
+      {
+        title: 'Content Repurposer',
+        description: 'Turn YouTube/blog into captions, posts, threads across platforms',
+        features: ['Multi-format conversion', 'Platform optimization', 'SEO enhancement', 'Automated distribution'],
+        price: 'From $6,000'
+      },
+      {
+        title: 'AI Video Summary → Post Pipeline',
+        description: 'Upload video → Transcribe → GPT captions → Social post auto-built',
+        features: ['Video transcription', 'Caption generation', 'Post creation', 'Platform formatting'],
+        price: 'From $7,000'
+      }
+    ]
+  },
+  {
+    category: 'Sales & CRM',
+    icon: Users,
+    modules: [
+      {
+        title: 'Lead Enrichment Workflow',
+        description: 'Form → Clearbit/Hunter → CRM with full profile',
+        features: ['Data enrichment', 'Profile completion', 'CRM integration', 'Real-time updates'],
+        price: 'From $5,000'
+      },
+      {
+        title: 'Gmail → CRM AI Logger',
+        description: 'Parse emails → summarize with GPT → auto-log to HubSpot/Pipedrive',
+        features: ['Email parsing', 'AI summarization', 'Automatic logging', 'CRM synchronization'],
+        price: 'From $6,000'
+      },
+      {
+        title: 'Proposal Builder (GPT + PDF)',
+        description: 'Form → generate proposal → export PDF → email',
+        features: ['Dynamic proposals', 'PDF generation', 'Template customization', 'Automated delivery'],
+        price: 'From $8,000'
+      },
+      {
+        title: 'Inbound Lead Qualifier Bot',
+        description: 'GPT ranks leads based on keywords, interest, value',
+        features: ['Lead scoring', 'Qualification criteria', 'Priority ranking', 'Automated routing'],
+        price: 'From $5,000'
+      }
+    ]
+  },
+  {
+    category: 'Internal Operations',
+    icon: BarChart3,
+    modules: [
+      {
+        title: 'Slack → Google Sheets Task Tracker',
+        description: 'Slack message → structured task → Sheets/Notion',
+        features: ['Message parsing', 'Task creation', 'Project tracking', 'Team collaboration'],
+        price: 'From $3,000'
+      },
+      {
+        title: 'Zoom Meeting Summarizer',
+        description: 'Transcribe + summarize → auto-upload to Notion',
+        features: ['Meeting transcription', 'Key points extraction', 'Action items', 'Automated documentation'],
+        price: 'From $4,000'
+      },
+      {
+        title: 'KPI Dashboard Generator',
+        description: 'GA/Stripe/Facebook → weekly snapshot → send to Slack',
+        features: ['Multi-source data', 'Automated reporting', 'Visual dashboards', 'Scheduled delivery'],
+        price: 'From $6,000'
+      }
+    ]
+  },
+  {
+    category: 'Backend Utilities',
+    icon: Database,
+    modules: [
+      {
+        title: 'Form-to-Database (Tally → Airtable/SQL)',
+        description: 'Form → validate → store data in preferred DB',
+        features: ['Data validation', 'Database integration', 'Error handling', 'Real-time sync'],
+        price: 'From $3,000'
+      },
+      {
+        title: 'Invoice Generator',
+        description: 'Stripe webhook → generate invoice PDF → send via email',
+        features: ['Automated invoicing', 'PDF generation', 'Email delivery', 'Payment tracking'],
+        price: 'From $4,000'
+      },
+      {
+        title: 'Support Ticket Summarizer',
+        description: 'Intercom/Zendesk → summarize with GPT → assign by intent',
+        features: ['Ticket analysis', 'Intent classification', 'Auto-assignment', 'Priority scoring'],
+        price: 'From $5,000'
+      }
+    ]
+  },
+  {
+    category: 'Unique AI Modules',
+    icon: Mic,
+    modules: [
+      {
+        title: 'Voice Note to Task Creator',
+        description: 'Voice input → Whisper transcription → GPT task → Notion/Trello',
+        features: ['Voice recognition', 'Task extraction', 'Project management', 'Natural language processing'],
+        price: 'From $6,000'
+      },
+      {
+        title: 'AI Business Intelligence Digest',
+        description: 'GPT summarizes KPIs from multiple APIs → sends report to Slack/Email',
+        features: ['Multi-source analytics', 'Intelligent insights', 'Automated reporting', 'Executive summaries'],
+        price: 'From $8,000'
+      }
+    ]
+  }
+];
+
 const industries = [
   { name: 'Healthcare', icon: '🏥' },
   { name: 'Finance', icon: '💰' },
@@ -187,11 +358,23 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Core Services */}
       <section className="py-24 bg-navy-900">
         <div className="container-width section-padding">
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Core <span className="gradient-text">AI Services</span>
+              </h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto">
+                Our foundational AI services provide the strategic foundation and 
+                custom solutions your business needs to succeed.
+              </p>
+            </div>
+          </AnimatedSection>
+
           <div className="space-y-16">
-            {services.map((service, index) => (
+            {coreServices.map((service, index) => (
               <AnimatedSection 
                 key={service.id} 
                 animation={index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'}
@@ -206,7 +389,7 @@ export default function Services() {
                       <div className="w-14 h-14 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
                         <service.icon className="w-7 h-7 text-white" />
                       </div>
-                      <h2 className="text-3xl md:text-4xl font-bold">{service.title}</h2>
+                      <h3 className="text-3xl md:text-4xl font-bold">{service.title}</h3>
                     </div>
 
                     <p className="text-xl text-white/70 mb-8 leading-relaxed">
@@ -278,8 +461,76 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Industries */}
+      {/* AI Automation Modules */}
       <section className="py-24 bg-navy-800">
+        <div className="container-width section-padding">
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                AI Automation <span className="gradient-text">Modules</span>
+              </h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto">
+                Ready-to-deploy automation modules that streamline your business processes 
+                and boost productivity with intelligent AI workflows.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="space-y-16">
+            {automationModules.map((category, categoryIndex) => (
+              <AnimatedSection key={category.category} animation="fade-up" delay={categoryIndex * 100}>
+                <div className="mb-12">
+                  <div className="flex items-center space-x-4 mb-8">
+                    <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
+                      <category.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold">{category.category}</h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {category.modules.map((module, moduleIndex) => (
+                      <AnimatedSection 
+                        key={module.title} 
+                        animation="fade-up" 
+                        delay={(categoryIndex * 100) + (moduleIndex * 50)}
+                      >
+                        <div className="glass-card p-6 rounded-xl hover:bg-white/10 transition-all duration-300 group h-full">
+                          <h4 className="text-xl font-semibold mb-3 group-hover:text-electric-400 transition-colors">
+                            {module.title}
+                          </h4>
+                          <p className="text-white/70 mb-4 leading-relaxed">
+                            {module.description}
+                          </p>
+                          
+                          <div className="space-y-2 mb-6">
+                            {module.features.map((feature) => (
+                              <div key={feature} className="flex items-center space-x-2">
+                                <Zap className="w-3 h-3 text-electric-400" />
+                                <span className="text-sm text-white/60">{feature}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div className="text-electric-400 font-semibold">{module.price}</div>
+                            <Button className="btn-secondary text-sm">
+                              Get Started
+                              <ArrowRight className="ml-2 w-3 h-3" />
+                            </Button>
+                          </div>
+                        </div>
+                      </AnimatedSection>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries */}
+      <section className="py-24 bg-navy-900">
         <div className="container-width section-padding">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-16">
