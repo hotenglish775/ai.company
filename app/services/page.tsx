@@ -21,6 +21,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
 import { ProductCard } from '@/components/shared/ProductCard';
+import { ServiceCard } from '@/components/shared/ServiceCard';
 import { products, getProductsByCategory } from '@/lib/products';
 
 export const metadata: Metadata = {
@@ -42,12 +43,6 @@ const coreServices = [
       'Change Management Support',
       'Executive AI Training'
     ],
-    benefits: [
-      'Clear AI strategy aligned with business goals',
-      'Reduced implementation risks',
-      'Faster time-to-value',
-      'Expert guidance throughout journey'
-    ],
     price: 'Custom pricing',
     timeline: '4-8 weeks',
   },
@@ -63,12 +58,6 @@ const coreServices = [
       'Performance Validation',
       'Deployment & Integration',
       'Ongoing Model Monitoring'
-    ],
-    benefits: [
-      'Models tailored to your specific needs',
-      'Superior performance on your data',
-      'Scalable and production-ready',
-      'Full ownership and control'
     ],
     price: 'From $50,000',
     timeline: '8-16 weeks',
@@ -86,12 +75,6 @@ const coreServices = [
       'Text Classification',
       'Named Entity Recognition'
     ],
-    benefits: [
-      'Automated customer support',
-      'Improved content understanding',
-      'Multilingual capabilities',
-      '24/7 availability'
-    ],
     price: 'From $25,000',
     timeline: '6-12 weeks',
   },
@@ -107,12 +90,6 @@ const coreServices = [
       'Medical Image Analysis',
       'OCR & Document Scanning',
       'Real-time Video Processing'
-    ],
-    benefits: [
-      'Automated quality control',
-      'Enhanced security systems',
-      'Reduced manual inspection',
-      'Improved accuracy'
     ],
     price: 'From $35,000',
     timeline: '8-14 weeks',
@@ -130,12 +107,6 @@ const coreServices = [
       'Churn Prediction',
       'Anomaly Detection'
     ],
-    benefits: [
-      'Better business planning',
-      'Proactive risk management',
-      'Improved customer retention',
-      'Optimized operations'
-    ],
     price: 'From $30,000',
     timeline: '6-10 weeks',
   },
@@ -151,12 +122,6 @@ const coreServices = [
       'Compliance Framework',
       'Audit Trail Implementation',
       'Ethical AI Guidelines'
-    ],
-    benefits: [
-      'Regulatory compliance',
-      'Reduced AI risks',
-      'Enhanced data privacy',
-      'Trustworthy AI systems'
     ],
     price: 'From $20,000',
     timeline: '4-8 weeks',
@@ -244,88 +209,14 @@ export default function Services() {
             </div>
           </AnimatedSection>
 
-          <div className="space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {coreServices.map((service, index) => (
               <AnimatedSection 
                 key={service.id} 
-                animation={index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'}
+                animation="fade-up" 
                 delay={index * 100}
               >
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:grid-flow-dense' : ''
-                }`}>
-                  {/* Content */}
-                  <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                    <div className="flex items-center space-x-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
-                        <service.icon className="w-7 h-7 text-white" />
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-bold">{service.title}</h3>
-                    </div>
-
-                    <p className="text-xl text-white/70 mb-8 leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                      <div>
-                        <h4 className="text-lg font-semibold mb-4 text-electric-400">Key Features</h4>
-                        <ul className="space-y-2">
-                          {service.features.slice(0, 3).map((feature) => (
-                            <li key={feature} className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-teal-400" />
-                              <span className="text-white/70 text-sm">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold mb-4 text-electric-400">Benefits</h4>
-                        <ul className="space-y-2">
-                          {service.benefits.slice(0, 3).map((benefit) => (
-                            <li key={benefit} className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-teal-400" />
-                              <span className="text-white/70 text-sm">{benefit}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-8">
-                      <div>
-                        <div className="text-sm text-white/60">Starting Price</div>
-                        <div className="text-lg font-semibold gradient-text">{service.price}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-white/60">Timeline</div>
-                        <div className="text-lg font-semibold text-white">{service.timeline}</div>
-                      </div>
-                    </div>
-
-                    <Button className="btn-primary group">
-                      Learn More
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-
-                  {/* Visual */}
-                  <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                    <div className="glass-card p-8 rounded-2xl">
-                      <div className="space-y-4">
-                        <h4 className="font-semibold text-lg">All Features Include:</h4>
-                        <div className="grid grid-cols-1 gap-2">
-                          {service.features.map((feature) => (
-                            <div key={feature} className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-teal-400" />
-                              <span className="text-white/80 text-sm">{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ServiceCard service={service} />
               </AnimatedSection>
             ))}
           </div>
