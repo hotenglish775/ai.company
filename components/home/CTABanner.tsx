@@ -7,7 +7,7 @@ export function CTABanner() {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-electric-600 via-electric-500 to-teal-500"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-electric-400 via-electric-500 to-teal-400"></div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -29,11 +29,11 @@ export function CTABanner() {
         <AnimatedSection animation="fade-up">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Ready to Transform Your Business with AI?
+              Ready to Start Your AI Revolution?
             </h2>
             <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed">
               Join hundreds of forward-thinking companies who have already 
-              revolutionized their operations with our cutting-edge AI solutions.
+              revolutionized their operations with our cutting-edge AI automation solutions.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
@@ -42,7 +42,7 @@ export function CTABanner() {
                 className="bg-white text-electric-600 hover:bg-white/90 font-semibold text-lg px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
               >
                 <Link href="/contact">
-                  Start Your AI Journey
+                  Start Your Revolution
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
