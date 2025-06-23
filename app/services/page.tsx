@@ -1,16 +1,27 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { 
+  Brain, 
+  MessageSquare, 
+  Eye, 
+  TrendingUp, 
+  Shield, 
+  Cpu,
   ArrowRight,
   CheckCircle,
-  Sparkles
+  Sparkles,
+  Mail,
+  Bot,
+  Share2,
+  BarChart3,
+  Users,
+  Database,
+  Mic
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
 import { ProductCard } from '@/components/shared/ProductCard';
-import { ServiceCard } from '@/components/shared/ServiceCard';
 import { products, getProductsByCategory } from '@/lib/products';
-import { iconMap, IconName } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'AI Services - CognifyAI',
@@ -20,7 +31,7 @@ export const metadata: Metadata = {
 const coreServices = [
   {
     id: 'ai-consulting',
-    icon: 'Brain' as IconName,
+    icon: Brain,
     title: 'AI Strategy & Consulting',
     description: 'Comprehensive AI strategy development to identify opportunities and create implementation roadmaps.',
     features: [
@@ -31,12 +42,18 @@ const coreServices = [
       'Change Management Support',
       'Executive AI Training'
     ],
+    benefits: [
+      'Clear AI strategy aligned with business goals',
+      'Reduced implementation risks',
+      'Faster time-to-value',
+      'Expert guidance throughout journey'
+    ],
     price: 'Custom pricing',
     timeline: '4-8 weeks',
   },
   {
     id: 'custom-models',
-    icon: 'Cpu' as IconName,
+    icon: Cpu,
     title: 'Custom AI Model Development',
     description: 'Bespoke machine learning models trained specifically for your data and business requirements.',
     features: [
@@ -47,12 +64,18 @@ const coreServices = [
       'Deployment & Integration',
       'Ongoing Model Monitoring'
     ],
+    benefits: [
+      'Models tailored to your specific needs',
+      'Superior performance on your data',
+      'Scalable and production-ready',
+      'Full ownership and control'
+    ],
     price: 'From $50,000',
     timeline: '8-16 weeks',
   },
   {
     id: 'nlp',
-    icon: 'MessageSquare' as IconName,
+    icon: MessageSquare,
     title: 'Natural Language Processing',
     description: 'Advanced text analysis, chatbots, and conversational AI solutions for better customer engagement.',
     features: [
@@ -63,12 +86,18 @@ const coreServices = [
       'Text Classification',
       'Named Entity Recognition'
     ],
+    benefits: [
+      'Automated customer support',
+      'Improved content understanding',
+      'Multilingual capabilities',
+      '24/7 availability'
+    ],
     price: 'From $25,000',
     timeline: '6-12 weeks',
   },
   {
     id: 'computer-vision',
-    icon: 'Eye' as IconName,
+    icon: Eye,
     title: 'Computer Vision',
     description: 'Intelligent image and video analysis for automated visual inspection and recognition.',
     features: [
@@ -79,12 +108,18 @@ const coreServices = [
       'OCR & Document Scanning',
       'Real-time Video Processing'
     ],
+    benefits: [
+      'Automated quality control',
+      'Enhanced security systems',
+      'Reduced manual inspection',
+      'Improved accuracy'
+    ],
     price: 'From $35,000',
     timeline: '8-14 weeks',
   },
   {
     id: 'predictive-analytics',
-    icon: 'TrendingUp' as IconName,
+    icon: TrendingUp,
     title: 'Predictive Analytics',
     description: 'Forecast trends, predict outcomes, and make data-driven decisions with advanced analytics.',
     features: [
@@ -95,12 +130,18 @@ const coreServices = [
       'Churn Prediction',
       'Anomaly Detection'
     ],
+    benefits: [
+      'Better business planning',
+      'Proactive risk management',
+      'Improved customer retention',
+      'Optimized operations'
+    ],
     price: 'From $30,000',
     timeline: '6-10 weeks',
   },
   {
     id: 'ai-security',
-    icon: 'Shield' as IconName,
+    icon: Shield,
     title: 'AI Security & Compliance',
     description: 'Secure AI implementations with built-in compliance, monitoring, and risk management.',
     features: [
@@ -111,6 +152,12 @@ const coreServices = [
       'Audit Trail Implementation',
       'Ethical AI Guidelines'
     ],
+    benefits: [
+      'Regulatory compliance',
+      'Reduced AI risks',
+      'Enhanced data privacy',
+      'Trustworthy AI systems'
+    ],
     price: 'From $20,000',
     timeline: '4-8 weeks',
   },
@@ -119,32 +166,32 @@ const coreServices = [
 const automationCategories = [
   {
     category: 'Communication & CRM',
-    icon: 'Mail' as IconName,
+    icon: Mail,
     description: 'Automate your communication workflows and CRM processes'
   },
   {
     category: 'Social Media Automation',
-    icon: 'Share2' as IconName,
+    icon: Share2,
     description: 'Streamline your social media content and engagement'
   },
   {
     category: 'Sales & CRM',
-    icon: 'Users' as IconName,
+    icon: Users,
     description: 'Enhance your sales processes and customer relationships'
   },
   {
     category: 'Internal Operations',
-    icon: 'BarChart3' as IconName,
+    icon: BarChart3,
     description: 'Optimize your internal workflows and team productivity'
   },
   {
     category: 'Backend Utilities',
-    icon: 'Database' as IconName,
+    icon: Database,
     description: 'Powerful backend tools and data processing utilities'
   },
   {
     category: 'Unique AI Modules',
-    icon: 'Mic' as IconName,
+    icon: Mic,
     description: 'Innovative AI solutions for specialized use cases'
   }
 ];
@@ -197,22 +244,90 @@ export default function Services() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {coreServices.map((service, index) => {
-              const serviceWithIcon = {
-                ...service,
-                icon: iconMap[service.icon]
-              };
-              return (
-                <AnimatedSection 
-                  key={service.id} 
-                  animation="fade-up" 
-                  delay={index * 100}
-                >
-                  <ServiceCard service={serviceWithIcon} showBuyButton={true} />
-                </AnimatedSection>
-              );
-            })}
+          <div className="space-y-16">
+            {coreServices.map((service, index) => (
+              <AnimatedSection 
+                key={service.id} 
+                animation={index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'}
+                delay={index * 100}
+              >
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                  index % 2 === 1 ? 'lg:grid-flow-dense' : ''
+                }`}>
+                  {/* Content */}
+                  <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
+                    <div className="flex items-center space-x-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
+                        <service.icon className="w-7 h-7 text-white" />
+                      </div>
+                      <h3 className="text-3xl md:text-4xl font-bold">{service.title}</h3>
+                    </div>
+
+                    <p className="text-xl text-white/70 mb-8 leading-relaxed">
+                      {service.description}
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4 text-electric-400">Key Features</h4>
+                        <ul className="space-y-2">
+                          {service.features.slice(0, 3).map((feature) => (
+                            <li key={feature} className="flex items-center space-x-2">
+                              <CheckCircle className="w-4 h-4 text-teal-400" />
+                              <span className="text-white/70 text-sm">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4 text-electric-400">Benefits</h4>
+                        <ul className="space-y-2">
+                          {service.benefits.slice(0, 3).map((benefit) => (
+                            <li key={benefit} className="flex items-center space-x-2">
+                              <CheckCircle className="w-4 h-4 text-teal-400" />
+                              <span className="text-white/70 text-sm">{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-8">
+                      <div>
+                        <div className="text-sm text-white/60">Starting Price</div>
+                        <div className="text-lg font-semibold gradient-text">{service.price}</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-white/60">Timeline</div>
+                        <div className="text-lg font-semibold text-white">{service.timeline}</div>
+                      </div>
+                    </div>
+
+                    <Button className="btn-primary group">
+                      Learn More
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+
+                  {/* Visual */}
+                  <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
+                    <div className="glass-card p-8 rounded-2xl">
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-lg">All Features Include:</h4>
+                        <div className="grid grid-cols-1 gap-2">
+                          {service.features.map((feature) => (
+                            <div key={feature} className="flex items-center space-x-2">
+                              <CheckCircle className="w-4 h-4 text-teal-400" />
+                              <span className="text-white/80 text-sm">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -235,14 +350,13 @@ export default function Services() {
           <div className="space-y-16">
             {automationCategories.map((category, categoryIndex) => {
               const categoryProducts = getProductsByCategory(category.category);
-              const IconComponent = iconMap[category.icon];
               
               return (
                 <AnimatedSection key={category.category} animation="fade-up" delay={categoryIndex * 100}>
                   <div className="mb-12">
                     <div className="flex items-center space-x-4 mb-8">
                       <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
-                        <IconComponent className="w-6 h-6 text-white" />
+                        <category.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="text-3xl font-bold">{category.category}</h3>
