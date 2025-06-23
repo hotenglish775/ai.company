@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Metadata } from 'next';
 import { 
   Mail, 
   Phone, 
@@ -12,7 +11,9 @@ import {
   Sparkles,
   MessageSquare,
   Calendar,
-  Users
+  Users,
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
@@ -22,28 +23,28 @@ const contactInfo = [
     icon: Mail,
     title: 'Email Us',
     description: 'Get in touch via email',
-    contact: 'hello@cognifyai.com',
-    action: 'mailto:hello@cognifyai.com',
+    contact: 'hello@revolution-ai.co.uk',
+    action: 'mailto:hello@revolution-ai.co.uk',
   },
   {
     icon: Phone,
     title: 'Call Us',
     description: 'Speak with our team',
-    contact: '+1 (555) 123-4567',
-    action: 'tel:+15551234567',
+    contact: '+44 (0) 20 7946 0958',
+    action: 'tel:+442079460958',
   },
   {
     icon: MapPin,
     title: 'Visit Us',
     description: 'Our headquarters',
-    contact: '123 AI Street, San Francisco, CA 94105',
+    contact: 'London, United Kingdom',
     action: '#',
   },
   {
     icon: Clock,
     title: 'Business Hours',
     description: 'Monday - Friday',
-    contact: '9:00 AM - 6:00 PM PST',
+    contact: '9:00 AM - 6:00 PM GMT',
     action: '#',
   },
 ];
@@ -55,20 +56,38 @@ const services = [
   'Computer Vision Solutions',
   'Predictive Analytics',
   'AI Security & Compliance',
+  'Automation Workflows',
   'Other',
 ];
 
 const budgetRanges = [
-  'Under $25,000',
-  '$25,000 - $50,000',
-  '$50,000 - $100,000',
-  '$100,000 - $250,000',
-  '$250,000+',
+  'Under £25,000',
+  '£25,000 - £50,000',
+  '£50,000 - £100,000',
+  '£100,000 - £250,000',
+  '£250,000+',
   'Not sure yet',
 ];
 
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  company: string;
+  phone: string;
+  service: string;
+  budget: string;
+  timeline: string;
+  message: string;
+  honeypot: string; // Hidden spam prevention field
+}
+
+interface FormErrors {
+  [key: string]: string;
+}
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
     email: '',
@@ -78,10 +97,13 @@ export default function Contact() {
     budget: '',
     timeline: '',
     message: '',
+    honeypot: '', // Hidden field
   });
 
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -89,17 +111,88 @@ export default function Contact() {
       ...prev,
       [name]: value,
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+    
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    } else if (formData.firstName.trim().length < 2) {
+      newErrors.firstName = 'First name must be at least 2 characters';
+    }
+    
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    } else if (formData.lastName.trim().length < 2) {
+      newErrors.lastName = 'Last name must be at least 2 characters';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (formData.phone && !/^[\d+\s()-]{10,20}$/.test(formData.phone.replace(/[^\d+\s()-]/g, ''))) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError('');
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit form');
+      }
+      
+      if (data.success) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error(data.error || 'Submission failed');
+      }
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitError(error instanceof Error ? error.message : 'An unexpected error occurred');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -108,7 +201,7 @@ export default function Contact() {
         <div className="container-width section-padding">
           <AnimatedSection animation="fade-up">
             <div className="text-center max-w-2xl mx-auto">
-              <div className="w-20 h-20 bg-gradient-to-r from-electric-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-8">
+              <div className="w-20 h-20 bg-gradient-to-r from-electric-400 to-teal-400 rounded-full flex items-center justify-center mx-auto mb-8">
                 <CheckCircle className="w-10 h-10 text-white" />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -120,7 +213,22 @@ export default function Contact() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <Button 
-                  onClick={() => setIsSubmitted(false)}
+                  onClick={() => {
+                    setIsSubmitted(false);
+                    setFormData({
+                      firstName: '',
+                      lastName: '',
+                      email: '',
+                      company: '',
+                      phone: '',
+                      service: '',
+                      budget: '',
+                      timeline: '',
+                      message: '',
+                      honeypot: '',
+                    });
+                    setErrors({});
+                  }}
                   className="btn-primary"
                 >
                   Send Another Message
@@ -146,8 +254,8 @@ export default function Contact() {
         <div className="container-width section-padding">
           <AnimatedSection animation="fade-up">
             <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center space-x-2 bg-electric-500/10 rounded-full px-4 py-2 mb-6">
-                <Sparkles className="w-4 h-4 text-electric-400" />
+              <div className="inline-flex items-center space-x-2 bg-electric-400/10 rounded-full px-6 py-3 mb-6">
+                <Sparkles className="w-5 h-5 text-electric-400" />
                 <span className="text-sm font-medium text-electric-400">Get In Touch</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -181,7 +289,7 @@ export default function Contact() {
                   <div className="space-y-6">
                     {contactInfo.map((info, index) => (
                       <div key={info.title} className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-gradient-to-r from-electric-400 to-teal-400 rounded-xl flex items-center justify-center flex-shrink-0">
                           <info.icon className="w-6 h-6 text-white" />
                         </div>
                         <div>
@@ -202,7 +310,7 @@ export default function Contact() {
                     ))}
                   </div>
 
-                  <div className="mt-12 p-6 glass-card rounded-2xl">
+                  <div className="mt-12 p-6 glass-card rounded-2xl border border-white/10">
                     <h3 className="font-semibold mb-4 flex items-center">
                       <Calendar className="w-5 h-5 mr-2 text-electric-400" />
                       Schedule a Call
@@ -221,13 +329,32 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <AnimatedSection animation="slide-in-right">
-                <div className="glass-card p-8 rounded-3xl">
+                <div className="glass-card p-8 rounded-3xl border border-white/10">
                   <div className="flex items-center space-x-3 mb-8">
                     <MessageSquare className="w-8 h-8 text-electric-400" />
                     <h2 className="text-3xl font-bold">Send us a Message</h2>
                   </div>
 
+                  {/* Error Message */}
+                  {submitError && (
+                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center space-x-3">
+                      <AlertCircle className="w-5 h-5 text-red-400" />
+                      <p className="text-red-400">{submitError}</p>
+                    </div>
+                  )}
+
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot field - hidden from users */}
+                    <input
+                      type="text"
+                      name="honeypot"
+                      value={formData.honeypot}
+                      onChange={handleInputChange}
+                      style={{ display: 'none' }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+
                     {/* Name Fields */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
@@ -241,9 +368,14 @@ export default function Contact() {
                           required
                           value={formData.firstName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
+                          className={`w-full px-4 py-3 bg-white/10 border rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all ${
+                            errors.firstName ? 'border-red-500' : 'border-white/20'
+                          }`}
                           placeholder="John"
                         />
+                        {errors.firstName && (
+                          <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
+                        )}
                       </div>
                       <div>
                         <label htmlFor="lastName" className="block text-sm font-medium text-white/80 mb-2">
@@ -256,9 +388,14 @@ export default function Contact() {
                           required
                           value={formData.lastName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
+                          className={`w-full px-4 py-3 bg-white/10 border rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all ${
+                            errors.lastName ? 'border-red-500' : 'border-white/20'
+                          }`}
                           placeholder="Doe"
                         />
+                        {errors.lastName && (
+                          <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
+                        )}
                       </div>
                     </div>
 
@@ -275,9 +412,14 @@ export default function Contact() {
                           required
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
+                          className={`w-full px-4 py-3 bg-white/10 border rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all ${
+                            errors.email ? 'border-red-500' : 'border-white/20'
+                          }`}
                           placeholder="john@company.com"
                         />
+                        {errors.email && (
+                          <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                        )}
                       </div>
                       <div>
                         <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-2">
@@ -289,7 +431,7 @@ export default function Contact() {
                           name="company"
                           value={formData.company}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all"
                           placeholder="Your Company"
                         />
                       </div>
@@ -306,9 +448,14 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
-                        placeholder="+1 (555) 123-4567"
+                        className={`w-full px-4 py-3 bg-white/10 border rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all ${
+                          errors.phone ? 'border-red-500' : 'border-white/20'
+                        }`}
+                        placeholder="+44 20 7946 0958"
                       />
+                      {errors.phone && (
+                        <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                      )}
                     </div>
 
                     {/* Service and Budget */}
@@ -322,9 +469,9 @@ export default function Contact() {
                           name="service"
                           value={formData.service}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all"
                         >
-                          <option value="">Select a service</option>
+                          <option value="" className="bg-navy-800">Select a service</option>
                           {services.map((service) => (
                             <option key={service} value={service} className="bg-navy-800">
                               {service}
@@ -341,9 +488,9 @@ export default function Contact() {
                           name="budget"
                           value={formData.budget}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all"
                         >
-                          <option value="">Select budget range</option>
+                          <option value="" className="bg-navy-800">Select budget range</option>
                           {budgetRanges.map((range) => (
                             <option key={range} value={range} className="bg-navy-800">
                               {range}
@@ -364,7 +511,7 @@ export default function Contact() {
                         name="timeline"
                         value={formData.timeline}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all"
                         placeholder="e.g., 3-6 months, ASAP, Q2 2024"
                       />
                     </div>
@@ -381,9 +528,14 @@ export default function Contact() {
                         rows={6}
                         value={formData.message}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all resize-none"
+                        className={`w-full px-4 py-3 bg-white/10 border rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all resize-none ${
+                          errors.message ? 'border-red-500' : 'border-white/20'
+                        }`}
                         placeholder="Tell us about your project, goals, and how we can help..."
                       />
+                      {errors.message && (
+                        <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                      )}
                     </div>
 
                     {/* Submit Button */}
@@ -394,7 +546,7 @@ export default function Contact() {
                     >
                       {isSubmitting ? (
                         <>
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                          <Loader2 className="w-5 h-5 animate-spin mr-2" />
                           Sending Message...
                         </>
                       ) : (
@@ -452,7 +604,7 @@ export default function Contact() {
                 },
               ].map((faq, index) => (
                 <AnimatedSection key={faq.question} animation="fade-up" delay={index * 100}>
-                  <div className="glass-card p-6 rounded-xl">
+                  <div className="glass-card p-6 rounded-xl border border-white/10">
                     <h3 className="text-lg font-semibold mb-3 text-electric-400">
                       {faq.question}
                     </h3>
