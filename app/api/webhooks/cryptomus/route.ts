@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
+// Define interface for additional data structure
+interface CryptomusAdditionalData {
+  productId?: string;
+  customerName?: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  productName?: string;
+}
+
 // Mock database function (replace with your actual database)
 async function updateOrderStatus(orderId: string, status: string, paymentData: any) {
   console.log('Updating order:', orderId, 'to status:', status, 'with data:', paymentData);
@@ -44,10 +53,10 @@ export async function POST(request: NextRequest) {
     
     const { order_id, status, uuid, amount, currency, txid, additional_data } = body;
 
-    let customerData = {};
+    let customerData: CryptomusAdditionalData = {};
     if (additional_data) {
       try {
-        customerData = JSON.parse(additional_data);
+        customerData = JSON.parse(additional_data) as CryptomusAdditionalData;
       } catch (e) {
         console.error('Failed to parse additional_data:', e);
       }
