@@ -172,28 +172,28 @@ const automationModules = [
     icon: Mail,
     modules: [
       {
-        title: 'AI Email Assistant (Gmail + GPT)',
-        description: 'Summarizes long emails, suggests replies, and auto-responds',
-        features: ['Email summarization', 'Smart reply suggestions', 'Auto-response system', 'Gmail integration'],
-        price: 'From $5,000'
+        title: 'AI Email Assistant (Gmail+GPT)',
+        description: 'Auto-reply and summarize Gmail using GPT-4',
+        features: ['Unlimited emails', 'Smart replies', 'Email summarization', 'Gmail integration'],
+        price: '$9/mo'
       },
       {
-        title: 'AI Call Summary + CRM Logging',
-        description: 'Transcribe calls via Whisper → Summarize via GPT → Send to HubSpot or Notion',
-        features: ['Call transcription', 'AI summarization', 'CRM integration', 'Automated logging'],
-        price: 'From $8,000'
+        title: 'Call Summary → CRM Logger',
+        description: 'Transcribe & log calls into Notion/HubSpot',
+        features: ['20 calls/month', 'Auto transcription', 'CRM integration', 'Meeting summaries'],
+        price: '$14/mo'
       },
       {
-        title: 'AI Chatbot for WhatsApp/Web',
-        description: 'GPT-powered lead capture, appointment booking',
-        features: ['Multi-platform support', 'Lead qualification', 'Appointment scheduling', 'Custom responses'],
-        price: 'From $6,000'
+        title: 'Chatbot for WhatsApp or Web',
+        description: 'Lead gen & reply automation via GPT chatbot',
+        features: ['1,000 messages/month', 'Lead capture', 'Auto responses', 'Multi-platform'],
+        price: '$25/mo'
       },
       {
-        title: 'Lead Nurturing Sequence Builder',
-        description: 'AI-drafted emails/SMS follow-ups triggered from forms or activity',
-        features: ['Automated sequences', 'Trigger-based messaging', 'Personalization', 'Multi-channel support'],
-        price: 'From $7,000'
+        title: 'AI Lead Nurturing Campaign Builder',
+        description: 'Generate full AI sequences (email/SMS)',
+        features: ['25 leads/month', 'Multi-channel', 'Personalization', 'Automated sequences'],
+        price: '$22/mo'
       }
     ]
   },
@@ -202,28 +202,28 @@ const automationModules = [
     icon: Share2,
     modules: [
       {
-        title: 'Social Content Generator + Scheduler',
-        description: 'GPT creates and schedules multi-platform content via Facebook/Buffer API',
-        features: ['Content generation', 'Multi-platform posting', 'Scheduling automation', 'Brand voice consistency'],
-        price: 'From $4,000'
+        title: 'Social Content Scheduler + AI',
+        description: 'GPT-generated content posted across platforms',
+        features: ['50 posts/month', 'Multi-platform', 'AI content generation', 'Auto scheduling'],
+        price: '$19/mo'
       },
       {
-        title: 'Auto Comment & DM Responder',
-        description: 'Detects inbound social messages and replies with AI-generated responses',
-        features: ['Real-time monitoring', 'Intelligent responses', 'Sentiment analysis', 'Escalation rules'],
-        price: 'From $5,000'
+        title: 'AI Comment & DM Auto-Reply',
+        description: 'Respond across platforms with GPT tone control',
+        features: ['500 replies/month', 'Tone control', 'Multi-platform', 'Smart responses'],
+        price: '$12/mo'
       },
       {
-        title: 'Content Repurposer',
-        description: 'Turn YouTube/blog into captions, posts, threads across platforms',
-        features: ['Multi-format conversion', 'Platform optimization', 'SEO enhancement', 'Automated distribution'],
-        price: 'From $6,000'
+        title: 'Content Repurposer (YT→Social)',
+        description: 'Turn YouTube or blog into captions/posts',
+        features: ['10 conversions/month', 'Multi-format', 'Platform optimization', 'SEO enhancement'],
+        price: '$15/mo'
       },
       {
-        title: 'AI Video Summary → Post Pipeline',
-        description: 'Upload video → Transcribe → GPT captions → Social post auto-built',
-        features: ['Video transcription', 'Caption generation', 'Post creation', 'Platform formatting'],
-        price: 'From $7,000'
+        title: 'Instagram Story Template Bot',
+        description: 'Use AI templates to generate stories',
+        features: ['25 images/month', 'AI templates', 'Brand consistency', 'Auto posting'],
+        price: '$6/mo'
       }
     ]
   },
@@ -232,28 +232,28 @@ const automationModules = [
     icon: Users,
     modules: [
       {
-        title: 'Lead Enrichment Workflow',
-        description: 'Form → Clearbit/Hunter → CRM with full profile',
-        features: ['Data enrichment', 'Profile completion', 'CRM integration', 'Real-time updates'],
-        price: 'From $5,000'
+        title: 'Auto CRM Enrichment Bot',
+        description: 'Add enriched contacts to your CRM',
+        features: ['100 leads/month', 'Data enrichment', 'CRM integration', 'Real-time updates'],
+        price: '$8/mo'
       },
       {
-        title: 'Gmail → CRM AI Logger',
-        description: 'Parse emails → summarize with GPT → auto-log to HubSpot/Pipedrive',
-        features: ['Email parsing', 'AI summarization', 'Automatic logging', 'CRM synchronization'],
-        price: 'From $6,000'
+        title: 'AI Proposal Generator',
+        description: 'Custom PDF proposals with GPT & branding',
+        features: ['10 proposals/month', 'Custom branding', 'PDF generation', 'Template library'],
+        price: '$12/mo'
       },
       {
-        title: 'Proposal Builder (GPT + PDF)',
-        description: 'Form → generate proposal → export PDF → email',
-        features: ['Dynamic proposals', 'PDF generation', 'Template customization', 'Automated delivery'],
-        price: 'From $8,000'
+        title: 'Support Ticket Summarizer',
+        description: 'Auto-summarize help desk queries with AI',
+        features: ['100 summaries/month', 'AI analysis', 'Priority scoring', 'Auto-assignment'],
+        price: '$10/mo'
       },
       {
-        title: 'Inbound Lead Qualifier Bot',
-        description: 'GPT ranks leads based on keywords, interest, value',
-        features: ['Lead scoring', 'Qualification criteria', 'Priority ranking', 'Automated routing'],
-        price: 'From $5,000'
+        title: 'AI Business Intelligence Reporter',
+        description: 'Summarize key business metrics with GPT',
+        features: ['Daily reports', 'Multi-source data', 'Executive summaries', 'Custom insights'],
+        price: '$16/mo'
       }
     ]
   },
@@ -262,22 +262,28 @@ const automationModules = [
     icon: BarChart3,
     modules: [
       {
-        title: 'Slack → Google Sheets Task Tracker',
-        description: 'Slack message → structured task → Sheets/Notion',
-        features: ['Message parsing', 'Task creation', 'Project tracking', 'Team collaboration'],
-        price: 'From $3,000'
+        title: 'Slack Task Tracker Bot',
+        description: 'Convert Slack tasks into Sheets/Notion',
+        features: ['50 messages/month', 'Task extraction', 'Project tracking', 'Team collaboration'],
+        price: '$4/mo'
       },
       {
-        title: 'Zoom Meeting Summarizer',
-        description: 'Transcribe + summarize → auto-upload to Notion',
-        features: ['Meeting transcription', 'Key points extraction', 'Action items', 'Automated documentation'],
-        price: 'From $4,000'
+        title: 'Meeting Notes Summarizer',
+        description: 'Zoom → transcript → GPT summary',
+        features: ['20 summaries/month', 'Auto transcription', 'Action items', 'Meeting insights'],
+        price: '$7/mo'
       },
       {
-        title: 'KPI Dashboard Generator',
-        description: 'GA/Stripe/Facebook → weekly snapshot → send to Slack',
-        features: ['Multi-source data', 'Automated reporting', 'Visual dashboards', 'Scheduled delivery'],
-        price: 'From $6,000'
+        title: 'KPI Digest → Slack',
+        description: 'Summary of KPIs from Stripe/GA sent to Slack',
+        features: ['Weekly reports', 'Multi-source data', 'Slack integration', 'Custom metrics'],
+        price: '$9/mo'
+      },
+      {
+        title: 'AI Video Template Creator',
+        description: 'Create AI avatars with voiceovers',
+        features: ['10 videos/month', 'AI avatars', 'Voice synthesis', 'Custom templates'],
+        price: '$29/mo'
       }
     ]
   },
@@ -286,22 +292,22 @@ const automationModules = [
     icon: Database,
     modules: [
       {
-        title: 'Form-to-Database (Tally → Airtable/SQL)',
-        description: 'Form → validate → store data in preferred DB',
-        features: ['Data validation', 'Database integration', 'Error handling', 'Real-time sync'],
-        price: 'From $3,000'
+        title: 'Background Remover (Image Tool)',
+        description: 'Remove backgrounds using Replicate/Remove.bg',
+        features: ['100 uses/month', 'High quality', 'Batch processing', 'API access'],
+        price: '$3/mo'
       },
       {
-        title: 'Invoice Generator',
-        description: 'Stripe webhook → generate invoice PDF → send via email',
-        features: ['Automated invoicing', 'PDF generation', 'Email delivery', 'Payment tracking'],
-        price: 'From $4,000'
+        title: 'PDF → Image Post Converter',
+        description: 'Turn PDFs into shareable image posts',
+        features: ['10 PDFs/month', 'Social optimization', 'Custom branding', 'Multiple formats'],
+        price: '$5/mo'
       },
       {
-        title: 'Support Ticket Summarizer',
-        description: 'Intercom/Zendesk → summarize with GPT → assign by intent',
-        features: ['Ticket analysis', 'Intent classification', 'Auto-assignment', 'Priority scoring'],
-        price: 'From $5,000'
+        title: 'Brand Kit Manager (Add-on)',
+        description: 'Manage brand assets and guidelines',
+        features: ['Unlimited assets', 'Brand guidelines', 'Team access', 'Version control'],
+        price: '$6/mo'
       }
     ]
   },
@@ -310,16 +316,10 @@ const automationModules = [
     icon: Mic,
     modules: [
       {
-        title: 'Voice Note to Task Creator',
-        description: 'Voice input → Whisper transcription → GPT task → Notion/Trello',
-        features: ['Voice recognition', 'Task extraction', 'Project management', 'Natural language processing'],
-        price: 'From $6,000'
-      },
-      {
-        title: 'AI Business Intelligence Digest',
-        description: 'GPT summarizes KPIs from multiple APIs → sends report to Slack/Email',
-        features: ['Multi-source analytics', 'Intelligent insights', 'Automated reporting', 'Executive summaries'],
-        price: 'From $8,000'
+        title: 'Voice Note → Task Automation',
+        description: 'Turn voice notes into Notion or Trello tasks',
+        features: ['50 tasks/month', 'Voice recognition', 'Task management', 'Multi-platform'],
+        price: '$5/mo'
       }
     ]
   }
@@ -470,8 +470,8 @@ export default function Services() {
                 AI Automation <span className="gradient-text">Modules</span>
               </h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                Ready-to-deploy automation modules that streamline your business processes 
-                and boost productivity with intelligent AI workflows.
+                Ready-to-deploy automation modules with transparent monthly pricing. 
+                Start automating your workflows today.
               </p>
             </div>
           </AnimatedSection>
@@ -487,33 +487,39 @@ export default function Services() {
                     <h3 className="text-3xl font-bold">{category.category}</h3>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {category.modules.map((module, moduleIndex) => (
                       <AnimatedSection 
                         key={module.title} 
                         animation="fade-up" 
                         delay={(categoryIndex * 100) + (moduleIndex * 50)}
                       >
-                        <div className="glass-card p-6 rounded-xl hover:bg-white/10 transition-all duration-300 group h-full">
-                          <h4 className="text-xl font-semibold mb-3 group-hover:text-electric-400 transition-colors">
-                            {module.title}
-                          </h4>
-                          <p className="text-white/70 mb-4 leading-relaxed">
-                            {module.description}
-                          </p>
-                          
-                          <div className="space-y-2 mb-6">
-                            {module.features.map((feature) => (
-                              <div key={feature} className="flex items-center space-x-2">
-                                <Zap className="w-3 h-3 text-electric-400" />
-                                <span className="text-sm text-white/60">{feature}</span>
-                              </div>
-                            ))}
+                        <div className="glass-card p-6 rounded-xl hover:bg-white/10 transition-all duration-300 group h-full flex flex-col">
+                          <div className="flex-1">
+                            <h4 className="text-lg font-semibold mb-3 group-hover:text-electric-400 transition-colors">
+                              {module.title}
+                            </h4>
+                            <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                              {module.description}
+                            </p>
+                            
+                            <div className="space-y-2 mb-6">
+                              {module.features.map((feature) => (
+                                <div key={feature} className="flex items-center space-x-2">
+                                  <Zap className="w-3 h-3 text-electric-400" />
+                                  <span className="text-xs text-white/60">{feature}</span>
+                                </div>
+                              ))}
+                            </div>
                           </div>
 
-                          <div className="flex items-center justify-between">
-                            <div className="text-electric-400 font-semibold">{module.price}</div>
-                            <Button className="btn-secondary text-sm">
+                          <div className="border-t border-white/10 pt-4">
+                            <div className="flex items-center justify-between mb-4">
+                              <div>
+                                <span className="text-xl font-bold gradient-text">{module.price}</span>
+                              </div>
+                            </div>
+                            <Button className="btn-primary w-full text-sm">
                               Get Started
                               <ArrowRight className="ml-2 w-3 h-3" />
                             </Button>
@@ -526,6 +532,20 @@ export default function Services() {
               </AnimatedSection>
             ))}
           </div>
+
+          <AnimatedSection animation="fade-up" delay={800}>
+            <div className="text-center mt-12">
+              <p className="text-white/70 mb-6">
+                Need a custom combination? We can create a tailored package for your specific needs.
+              </p>
+              <Button asChild className="btn-secondary">
+                <Link href="/contact">
+                  Request Custom Package
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
