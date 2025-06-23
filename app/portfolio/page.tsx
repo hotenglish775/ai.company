@@ -1,6 +1,24 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ExternalLink, Github, Calendar, Users, TrendingUp, Award, Sparkles } from 'lucide-react';
+import { 
+  ExternalLink, 
+  Github, 
+  Calendar, 
+  Users, 
+  TrendingUp, 
+  Award, 
+  Sparkles,
+  Mail,
+  Phone,
+  Bot,
+  Share2,
+  Video,
+  FileText,
+  BarChart3,
+  Mic,
+  Database,
+  Zap
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
 
@@ -9,7 +27,7 @@ export const metadata: Metadata = {
   description: 'Explore our successful AI implementations and case studies. See how we\'ve transformed businesses across various industries with cutting-edge AI solutions.',
 };
 
-const projects = [
+const featuredProjects = [
   {
     id: 'healthcare-ai',
     title: 'Medical Imaging AI for RadiologyTech',
@@ -44,6 +62,192 @@ const projects = [
     team: '8 specialists',
     featured: true,
   },
+];
+
+const automationCaseStudies = [
+  {
+    category: 'Communication & CRM',
+    icon: Mail,
+    projects: [
+      {
+        id: 'email-assistant-techcorp',
+        title: 'AI Email Assistant for TechCorp',
+        client: 'TechCorp Solutions',
+        description: 'Implemented Gmail + GPT integration that reduced email response time by 80% and improved customer satisfaction scores.',
+        image: 'https://images.pexels.com/photos/4439901/pexels-photo-4439901.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Email Automation', 'GPT Integration', 'Customer Service'],
+        metrics: [
+          { label: 'Response Time Reduction', value: '80%' },
+          { label: 'Customer Satisfaction', value: '94%' },
+          { label: 'Emails Processed Daily', value: '2,500+' },
+        ],
+        duration: '3 months',
+        team: '4 specialists',
+      },
+      {
+        id: 'call-summary-salesforce',
+        title: 'AI Call Summary System for SalesForce Pro',
+        client: 'SalesForce Pro',
+        description: 'Automated call transcription and CRM logging system that improved sales team productivity by 60%.',
+        image: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Call Transcription', 'CRM Integration', 'Sales Automation'],
+        metrics: [
+          { label: 'Productivity Increase', value: '60%' },
+          { label: 'Calls Processed', value: '500+/day' },
+          { label: 'Data Accuracy', value: '97%' },
+        ],
+        duration: '4 months',
+        team: '5 specialists',
+      },
+    ]
+  },
+  {
+    category: 'Social Media Automation',
+    icon: Share2,
+    projects: [
+      {
+        id: 'content-generator-brandco',
+        title: 'Social Content Generator for BrandCo',
+        client: 'BrandCo Marketing',
+        description: 'AI-powered content creation and scheduling system that increased social engagement by 150% across all platforms.',
+        image: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Content Generation', 'Social Media', 'Multi-platform'],
+        metrics: [
+          { label: 'Engagement Increase', value: '150%' },
+          { label: 'Content Pieces/Month', value: '500+' },
+          { label: 'Time Saved', value: '40 hours/week' },
+        ],
+        duration: '2 months',
+        team: '3 specialists',
+      },
+      {
+        id: 'video-pipeline-creator',
+        title: 'Video-to-Post Pipeline for CreatorHub',
+        client: 'CreatorHub Media',
+        description: 'Automated video transcription and social post generation system that streamlined content workflow by 70%.',
+        image: 'https://images.pexels.com/photos/3153198/pexels-photo-3153198.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Video Processing', 'Content Automation', 'Workflow'],
+        metrics: [
+          { label: 'Workflow Efficiency', value: '70%' },
+          { label: 'Videos Processed', value: '200+/month' },
+          { label: 'Platform Reach', value: '5 platforms' },
+        ],
+        duration: '3 months',
+        team: '4 specialists',
+      },
+    ]
+  },
+  {
+    category: 'Sales & CRM',
+    icon: Users,
+    projects: [
+      {
+        id: 'lead-enrichment-growthco',
+        title: 'Lead Enrichment System for GrowthCo',
+        client: 'GrowthCo Sales',
+        description: 'Automated lead enrichment workflow that improved lead quality scores by 85% and increased conversion rates.',
+        image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Lead Enrichment', 'Data Quality', 'Sales Automation'],
+        metrics: [
+          { label: 'Lead Quality Improvement', value: '85%' },
+          { label: 'Conversion Rate Increase', value: '45%' },
+          { label: 'Leads Processed Daily', value: '1,000+' },
+        ],
+        duration: '2 months',
+        team: '3 specialists',
+      },
+      {
+        id: 'proposal-builder-consultco',
+        title: 'AI Proposal Builder for ConsultCo',
+        client: 'ConsultCo Services',
+        description: 'Automated proposal generation system that reduced proposal creation time by 90% while maintaining quality.',
+        image: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Proposal Automation', 'Document Generation', 'Sales Tools'],
+        metrics: [
+          { label: 'Time Reduction', value: '90%' },
+          { label: 'Proposals Generated', value: '300+/month' },
+          { label: 'Win Rate Improvement', value: '25%' },
+        ],
+        duration: '3 months',
+        team: '4 specialists',
+      },
+    ]
+  },
+  {
+    category: 'Internal Operations',
+    icon: BarChart3,
+    projects: [
+      {
+        id: 'meeting-summarizer-teamwork',
+        title: 'Meeting Summarizer for TeamWork Inc',
+        client: 'TeamWork Inc',
+        description: 'Zoom meeting transcription and summarization system that improved team productivity and knowledge retention.',
+        image: 'https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Meeting Automation', 'Knowledge Management', 'Productivity'],
+        metrics: [
+          { label: 'Meeting Documentation', value: '100%' },
+          { label: 'Time Saved/Week', value: '15 hours' },
+          { label: 'Action Item Tracking', value: '95%' },
+        ],
+        duration: '2 months',
+        team: '3 specialists',
+      },
+      {
+        id: 'kpi-dashboard-datatech',
+        title: 'KPI Dashboard Generator for DataTech',
+        client: 'DataTech Analytics',
+        description: 'Automated business intelligence system that consolidates data from multiple sources into executive dashboards.',
+        image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Business Intelligence', 'Data Visualization', 'Automation'],
+        metrics: [
+          { label: 'Data Sources Integrated', value: '12' },
+          { label: 'Report Generation Time', value: '95% faster' },
+          { label: 'Executive Adoption', value: '100%' },
+        ],
+        duration: '4 months',
+        team: '5 specialists',
+      },
+    ]
+  },
+  {
+    category: 'Unique AI Modules',
+    icon: Mic,
+    projects: [
+      {
+        id: 'voice-task-creator-agile',
+        title: 'Voice Task Creator for AgileTeam',
+        client: 'AgileTeam Solutions',
+        description: 'Voice-to-task automation system that allows team members to create project tasks using natural speech.',
+        image: 'https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Voice Recognition', 'Task Management', 'Natural Language'],
+        metrics: [
+          { label: 'Task Creation Speed', value: '300% faster' },
+          { label: 'Voice Recognition Accuracy', value: '98%' },
+          { label: 'User Adoption Rate', value: '87%' },
+        ],
+        duration: '3 months',
+        team: '4 specialists',
+      },
+      {
+        id: 'bi-digest-executive',
+        title: 'AI Business Intelligence Digest for ExecutiveCorp',
+        client: 'ExecutiveCorp',
+        description: 'Intelligent business intelligence system that provides automated executive summaries from multiple data sources.',
+        image: 'https://images.pexels.com/photos/590045/pexels-photo-590045.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+        tags: ['Business Intelligence', 'Executive Reporting', 'Data Analysis'],
+        metrics: [
+          { label: 'Report Accuracy', value: '96%' },
+          { label: 'Time Saved/Week', value: '20 hours' },
+          { label: 'Decision Speed', value: '50% faster' },
+        ],
+        duration: '5 months',
+        team: '6 specialists',
+      },
+    ]
+  },
+];
+
+const traditionalProjects = [
   {
     id: 'retail-optimization',
     title: 'Supply Chain Optimization for GlobalRetail',
@@ -114,13 +318,11 @@ const projects = [
   },
 ];
 
-const categories = ['All', 'Healthcare', 'Finance', 'Retail', 'Manufacturing', 'Customer Service', 'Energy'];
-
 const stats = [
-  { number: '150+', label: 'Projects Completed' },
-  { number: '500+', label: 'AI Models Deployed' },
-  { number: '$250M+', label: 'Client Savings Generated' },
-  { number: '99.2%', label: 'Average Model Accuracy' },
+  { number: '200+', label: 'Projects Completed' },
+  { number: '750+', label: 'AI Models Deployed' },
+  { number: '$350M+', label: 'Client Savings Generated' },
+  { number: '99.3%', label: 'Average Model Accuracy' },
 ];
 
 export default function Portfolio() {
@@ -181,7 +383,7 @@ export default function Portfolio() {
           </AnimatedSection>
 
           <div className="space-y-16">
-            {projects.filter(project => project.featured).map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <AnimatedSection 
                 key={project.id} 
                 animation={index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'}
@@ -260,22 +462,120 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* All Projects Grid */}
+      {/* AI Automation Case Studies */}
       <section className="py-24 bg-navy-800">
         <div className="container-width section-padding">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                All <span className="gradient-text">Projects</span>
+                AI Automation <span className="gradient-text">Success Stories</span>
               </h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                Browse our complete portfolio of AI solutions across various industries and use cases.
+                Real-world implementations of our AI automation modules that have 
+                streamlined operations and boosted productivity for our clients.
               </p>
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+          <div className="space-y-16">
+            {automationCaseStudies.map((category, categoryIndex) => (
+              <AnimatedSection key={category.category} animation="fade-up" delay={categoryIndex * 100}>
+                <div className="mb-12">
+                  <div className="flex items-center space-x-4 mb-8">
+                    <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
+                      <category.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold">{category.category}</h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {category.projects.map((project, projectIndex) => (
+                      <AnimatedSection 
+                        key={project.id} 
+                        animation="fade-up" 
+                        delay={(categoryIndex * 100) + (projectIndex * 100)}
+                      >
+                        <div className="glass-card rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 group">
+                          <div className="relative">
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute top-4 left-4">
+                              <span className="bg-electric-500/20 text-electric-400 px-3 py-1 rounded-full text-sm font-medium">
+                                {project.client}
+                              </span>
+                            </div>
+                          </div>
+                          
+                          <div className="p-6">
+                            <h4 className="text-xl font-semibold mb-3 group-hover:text-electric-400 transition-colors">
+                              {project.title}
+                            </h4>
+                            <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                              {project.description}
+                            </p>
+
+                            {/* Metrics */}
+                            <div className="grid grid-cols-3 gap-2 mb-4">
+                              {project.metrics.map((metric) => (
+                                <div key={metric.label} className="text-center bg-white/5 p-2 rounded-lg">
+                                  <div className="text-sm font-bold gradient-text">{metric.value}</div>
+                                  <div className="text-xs text-white/60">{metric.label}</div>
+                                </div>
+                              ))}
+                            </div>
+
+                            <div className="flex flex-wrap gap-2 mb-4">
+                              {project.tags.map((tag) => (
+                                <span 
+                                  key={tag}
+                                  className="bg-white/10 text-white/70 px-2 py-1 rounded text-xs"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+
+                            <div className="flex items-center justify-between text-sm text-white/60">
+                              <div className="flex items-center space-x-2">
+                                <Calendar className="w-4 h-4" />
+                                <span>{project.duration}</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Users className="w-4 h-4" />
+                                <span>{project.team}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </AnimatedSection>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Traditional Projects Grid */}
+      <section className="py-24 bg-navy-900">
+        <div className="container-width section-padding">
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Core AI <span className="gradient-text">Projects</span>
+              </h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto">
+                Our foundational AI implementations across various industries and use cases.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {traditionalProjects.map((project, index) => (
               <AnimatedSection 
                 key={project.id} 
                 animation="fade-up" 
