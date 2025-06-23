@@ -11,17 +11,20 @@ import {
   CheckCircle,
   Sparkles,
   Mail,
+  Phone,
   Bot,
+  Calendar,
   Share2,
-  BarChart3,
+  Video,
+  FileText,
   Users,
+  BarChart3,
+  Mic,
   Database,
-  Mic
+  Zap
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
-import { ProductCard } from '@/components/shared/ProductCard';
-import { products, getProductsByCategory } from '@/lib/products';
 
 export const metadata: Metadata = {
   title: 'AI Services - CognifyAI',
@@ -163,36 +166,162 @@ const coreServices = [
   },
 ];
 
-const automationCategories = [
+const automationModules = [
   {
     category: 'Communication & CRM',
     icon: Mail,
-    description: 'Automate your communication workflows and CRM processes'
+    modules: [
+      {
+        title: 'AI Email Assistant (Gmail+GPT)',
+        description: 'Auto-reply and summarize Gmail using GPT-4',
+        features: ['Unlimited emails', 'Smart replies', 'Email summarization', 'Gmail integration'],
+        price: '$9/mo'
+      },
+      {
+        title: 'Call Summary → CRM Logger',
+        description: 'Transcribe & log calls into Notion/HubSpot',
+        features: ['20 calls/month', 'Auto transcription', 'CRM integration', 'Meeting summaries'],
+        price: '$14/mo'
+      },
+      {
+        title: 'Chatbot for WhatsApp or Web',
+        description: 'Lead gen & reply automation via GPT chatbot',
+        features: ['1,000 messages/month', 'Lead capture', 'Auto responses', 'Multi-platform'],
+        price: '$25/mo'
+      },
+      {
+        title: 'AI Lead Nurturing Campaign Builder',
+        description: 'Generate full AI sequences (email/SMS)',
+        features: ['25 leads/month', 'Multi-channel', 'Personalization', 'Automated sequences'],
+        price: '$22/mo'
+      }
+    ]
   },
   {
     category: 'Social Media Automation',
     icon: Share2,
-    description: 'Streamline your social media content and engagement'
+    modules: [
+      {
+        title: 'Social Content Scheduler + AI',
+        description: 'GPT-generated content posted across platforms',
+        features: ['50 posts/month', 'Multi-platform', 'AI content generation', 'Auto scheduling'],
+        price: '$19/mo'
+      },
+      {
+        title: 'AI Comment & DM Auto-Reply',
+        description: 'Respond across platforms with GPT tone control',
+        features: ['500 replies/month', 'Tone control', 'Multi-platform', 'Smart responses'],
+        price: '$12/mo'
+      },
+      {
+        title: 'Content Repurposer (YT→Social)',
+        description: 'Turn YouTube or blog into captions/posts',
+        features: ['10 conversions/month', 'Multi-format', 'Platform optimization', 'SEO enhancement'],
+        price: '$15/mo'
+      },
+      {
+        title: 'Instagram Story Template Bot',
+        description: 'Use AI templates to generate stories',
+        features: ['25 images/month', 'AI templates', 'Brand consistency', 'Auto posting'],
+        price: '$6/mo'
+      }
+    ]
   },
   {
     category: 'Sales & CRM',
     icon: Users,
-    description: 'Enhance your sales processes and customer relationships'
+    modules: [
+      {
+        title: 'Auto CRM Enrichment Bot',
+        description: 'Add enriched contacts to your CRM',
+        features: ['100 leads/month', 'Data enrichment', 'CRM integration', 'Real-time updates'],
+        price: '$8/mo'
+      },
+      {
+        title: 'AI Proposal Generator',
+        description: 'Custom PDF proposals with GPT & branding',
+        features: ['10 proposals/month', 'Custom branding', 'PDF generation', 'Template library'],
+        price: '$12/mo'
+      },
+      {
+        title: 'Support Ticket Summarizer',
+        description: 'Auto-summarize help desk queries with AI',
+        features: ['100 summaries/month', 'AI analysis', 'Priority scoring', 'Auto-assignment'],
+        price: '$10/mo'
+      },
+      {
+        title: 'AI Business Intelligence Reporter',
+        description: 'Summarize key business metrics with GPT',
+        features: ['Daily reports', 'Multi-source data', 'Executive summaries', 'Custom insights'],
+        price: '$16/mo'
+      }
+    ]
   },
   {
     category: 'Internal Operations',
     icon: BarChart3,
-    description: 'Optimize your internal workflows and team productivity'
+    modules: [
+      {
+        title: 'Slack Task Tracker Bot',
+        description: 'Convert Slack tasks into Sheets/Notion',
+        features: ['50 messages/month', 'Task extraction', 'Project tracking', 'Team collaboration'],
+        price: '$4/mo'
+      },
+      {
+        title: 'Meeting Notes Summarizer',
+        description: 'Zoom → transcript → GPT summary',
+        features: ['20 summaries/month', 'Auto transcription', 'Action items', 'Meeting insights'],
+        price: '$7/mo'
+      },
+      {
+        title: 'KPI Digest → Slack',
+        description: 'Summary of KPIs from Stripe/GA sent to Slack',
+        features: ['Weekly reports', 'Multi-source data', 'Slack integration', 'Custom metrics'],
+        price: '$9/mo'
+      },
+      {
+        title: 'AI Video Template Creator',
+        description: 'Create AI avatars with voiceovers',
+        features: ['10 videos/month', 'AI avatars', 'Voice synthesis', 'Custom templates'],
+        price: '$29/mo'
+      }
+    ]
   },
   {
     category: 'Backend Utilities',
     icon: Database,
-    description: 'Powerful backend tools and data processing utilities'
+    modules: [
+      {
+        title: 'Background Remover (Image Tool)',
+        description: 'Remove backgrounds using Replicate/Remove.bg',
+        features: ['100 uses/month', 'High quality', 'Batch processing', 'API access'],
+        price: '$3/mo'
+      },
+      {
+        title: 'PDF → Image Post Converter',
+        description: 'Turn PDFs into shareable image posts',
+        features: ['10 PDFs/month', 'Social optimization', 'Custom branding', 'Multiple formats'],
+        price: '$5/mo'
+      },
+      {
+        title: 'Brand Kit Manager (Add-on)',
+        description: 'Manage brand assets and guidelines',
+        features: ['Unlimited assets', 'Brand guidelines', 'Team access', 'Version control'],
+        price: '$6/mo'
+      }
+    ]
   },
   {
     category: 'Unique AI Modules',
     icon: Mic,
-    description: 'Innovative AI solutions for specialized use cases'
+    modules: [
+      {
+        title: 'Voice Note → Task Automation',
+        description: 'Turn voice notes into Notion or Trello tasks',
+        features: ['50 tasks/month', 'Voice recognition', 'Task management', 'Multi-platform'],
+        price: '$5/mo'
+      }
+    ]
   }
 ];
 
@@ -348,37 +477,60 @@ export default function Services() {
           </AnimatedSection>
 
           <div className="space-y-16">
-            {automationCategories.map((category, categoryIndex) => {
-              const categoryProducts = getProductsByCategory(category.category);
-              
-              return (
-                <AnimatedSection key={category.category} animation="fade-up" delay={categoryIndex * 100}>
-                  <div className="mb-12">
-                    <div className="flex items-center space-x-4 mb-8">
-                      <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
-                        <category.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-3xl font-bold">{category.category}</h3>
-                        <p className="text-white/70">{category.description}</p>
-                      </div>
+            {automationModules.map((category, categoryIndex) => (
+              <AnimatedSection key={category.category} animation="fade-up" delay={categoryIndex * 100}>
+                <div className="mb-12">
+                  <div className="flex items-center space-x-4 mb-8">
+                    <div className="w-12 h-12 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center">
+                      <category.icon className="w-6 h-6 text-white" />
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                      {categoryProducts.map((product, productIndex) => (
-                        <AnimatedSection 
-                          key={product.id} 
-                          animation="fade-up" 
-                          delay={(categoryIndex * 100) + (productIndex * 50)}
-                        >
-                          <ProductCard product={product} />
-                        </AnimatedSection>
-                      ))}
-                    </div>
+                    <h3 className="text-3xl font-bold">{category.category}</h3>
                   </div>
-                </AnimatedSection>
-              );
-            })}
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {category.modules.map((module, moduleIndex) => (
+                      <AnimatedSection 
+                        key={module.title} 
+                        animation="fade-up" 
+                        delay={(categoryIndex * 100) + (moduleIndex * 50)}
+                      >
+                        <div className="glass-card p-6 rounded-xl hover:bg-white/10 transition-all duration-300 group h-full flex flex-col">
+                          <div className="flex-1">
+                            <h4 className="text-lg font-semibold mb-3 group-hover:text-electric-400 transition-colors">
+                              {module.title}
+                            </h4>
+                            <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                              {module.description}
+                            </p>
+                            
+                            <div className="space-y-2 mb-6">
+                              {module.features.map((feature) => (
+                                <div key={feature} className="flex items-center space-x-2">
+                                  <Zap className="w-3 h-3 text-electric-400" />
+                                  <span className="text-xs text-white/60">{feature}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="border-t border-white/10 pt-4">
+                            <div className="flex items-center justify-between mb-4">
+                              <div>
+                                <span className="text-xl font-bold gradient-text">{module.price}</span>
+                              </div>
+                            </div>
+                            <Button className="btn-primary w-full text-sm">
+                              Get Started
+                              <ArrowRight className="ml-2 w-3 h-3" />
+                            </Button>
+                          </div>
+                        </div>
+                      </AnimatedSection>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
 
           <AnimatedSection animation="fade-up" delay={800}>
