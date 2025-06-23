@@ -198,21 +198,15 @@ export default function Services() {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {coreServices.map((service, index) => {
-              const serviceWithIcon = {
-                ...service,
-                icon: iconMap[service.icon]
-              };
-              return (
-                <AnimatedSection 
-                  key={service.id} 
-                  animation="fade-up" 
-                  delay={index * 100}
-                >
-                  <ServiceCard service={serviceWithIcon} showBuyButton={true} />
-                </AnimatedSection>
-              );
-            })}
+            {coreServices.map((service, index) => (
+              <AnimatedSection 
+                key={service.id} 
+                animation="fade-up" 
+                delay={index * 100}
+              >
+                <ServiceCard service={service} showBuyButton={true} />
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>

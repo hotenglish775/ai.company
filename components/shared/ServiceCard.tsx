@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PaymentModal } from '@/components/payment/PaymentModal';
+import { iconMap, IconName } from '@/lib/icons';
 
 interface Service {
   id: string;
@@ -12,7 +13,7 @@ interface Service {
   features: string[];
   price: string;
   timeline?: string;
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?: IconName;
 }
 
 interface ServiceCardProps {
@@ -46,7 +47,7 @@ export function ServiceCard({ service, delay = 0, showBuyButton = true }: Servic
         <div className="flex-1">
           {service.icon && (
             <div className="w-14 h-14 bg-gradient-to-r from-electric-500 to-teal-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-pulse-glow transition-all duration-300">
-              <service.icon className="w-7 h-7 text-white" />
+              {React.createElement(iconMap[service.icon], { className: "w-7 h-7 text-white" })}
             </div>
           )}
           
